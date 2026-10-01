@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zviropolis Veterinary | Veterinary in Warsaw</title>
+<meta name="description" content="Zviropolis Veterinary — premium Veterinary services in Warsaw. Modern, professional, trusted.">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+<style>
+:root{
+--onyx:#0a0a0f;--onyx2:#12121a;--gold:#d4af37;--gold2:#e8c760;--light:#f5f5f7;--muted:rgba(245,245,247,.6);--accent:#14b8a6;
+--radius:16px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--onyx);color:var(--light);overflow-x:hidden;cursor:none}
+h1,h2,h3,h4{font-family:'Sora',sans-serif;font-weight:700}
+a{color:inherit;text-decoration:none}
+section{padding:100px 20px;position:relative}
+.container{max-width:1200px;margin:0 auto}
+.muted{color:var(--muted)}
+.gold{color:var(--gold)}
+.bg-grad{background:radial-gradient(ellipse at top,var(--onyx2),var(--onyx))}
+
+/* Custom Cursor */
+.cursor-dot{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transition:transform .15s ease}
+.cursor-ring{position:fixed;width:40px;height:40px;border:2px solid rgba(212,175,55,.4);border-radius:50%;pointer-events:none;z-index:9998;transition:transform .25s ease, width .25s, height .25s}
+.cursor-ring.hover{width:60px;height:60px;border-color:var(--gold)}
+
+/* Nav */
+nav{position:fixed;top:0;width:100%;z-index:1000;padding:20px 40px;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(20px);background:rgba(10,10,15,.7);border-bottom:1px solid rgba(255,255,255,.05)}
+nav .logo{font-family:'Sora',sans-serif;font-weight:800;font-size:1.4rem;letter-spacing:-1px}
+nav .logo span{color:var(--gold)}
+nav ul{display:flex;gap:32px;list-style:none}
+nav ul a{font-size:.9rem;opacity:.7;transition:opacity .3s}
+nav ul a:hover{opacity:1;color:var(--gold)}
+@media(max-width:768px){nav ul{display:none}}
+
+/* Hero */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;position:relative}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,var(--accent)15,transparent 60%);opacity:.4}
+.hero-badge{display:inline-block;padding:8px 20px;border:1px solid rgba(255,255,255,.1);border-radius:50px;font-size:.85rem;color:var(--muted);margin-bottom:24px;backdrop-filter:blur(10px)}
+.hero h1{font-size:clamp(2.5rem,7vw,5.5rem);line-height:1.05;letter-spacing:-2px;margin-bottom:20px}
+.hero h1 .gold{display:block}
+.hero p{font-size:clamp(1rem,2.5vw,1.3rem);color:var(--muted);max-width:600px;margin:0 auto 40px}
+.hero-cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn{padding:16px 36px;border-radius:50px;font-weight:600;font-size:1rem;transition:all .3s ease;display:inline-flex;align-items:center;gap:10px;border:none;cursor:none}
+.btn-gold{background:var(--gold);color:var(--onyx)}
+.btn-gold:hover{transform:translateY(-3px);box-shadow:0 10px 40px rgba(212,175,55,.3)}
+.btn-ghost{background:transparent;border:1px solid rgba(255,255,255,.15);color:var(--light)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+.hero-scroll{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);font-size:.8rem;color:var(--muted);animation:bounce 2s infinite}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(10px)}}
+
+/* Section Header */
+.sec-header{text-align:center;margin-bottom:60px}
+.sec-header .tag{color:var(--gold);font-size:.85rem;text-transform:uppercase;letter-spacing:3px;margin-bottom:12px;display:block}
+.sec-header h2{font-size:clamp(2rem,4vw,3rem);letter-spacing:-1px}
+.sec-header p{color:var(--muted);margin-top:16px;max-width:500px;margin-left:auto;margin-right:auto}
+
+/* About */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+@media(max-width:768px){.about-grid{grid-template-columns:1fr}}
+.about-img{border-radius:var(--radius);overflow:hidden;aspect-ratio:4/3;position:relative}
+.about-img img{width:100%;height:100%;object-fit:cover}
+.about-text h3{font-size:1.8rem;margin-bottom:20px}
+.about-text p{color:var(--muted);line-height:1.8;margin-bottom:16px}
+.about-stats{display:flex;gap:40px;margin-top:32px}
+.about-stats .stat-num{font-size:2.5rem;font-weight:800;color:var(--gold);font-family:'Sora',sans-serif}
+.about-stats .stat-label{font-size:.85rem;color:var(--muted)}
+
+/* Services */
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media(max-width:968px){.services-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.services-grid{grid-template-columns:1fr}}
+.service-card{background:rgba(255,255,255,.045);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.09);border-radius:var(--radius);padding:36px 28px;transition:all .4s ease;transform-style:preserve-3d}
+.service-card:hover{border-color:rgba(212,175,55,.3);transform:translateY(-6px)}
+.service-icon{width:56px;height:56px;border-radius:14px;background:rgba(212,175,55,.1);display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin-bottom:20px}
+.service-card h3{font-size:1.2rem;margin-bottom:12px}
+.service-card p{color:var(--muted);font-size:.95rem;line-height:1.7}
+
+/* Gallery Swiper */
+.gallery-swiper{width:100%;overflow:hidden;border-radius:var(--radius)}
+.gallery-swiper .swiper-slide{border-radius:var(--radius);overflow:hidden;aspect-ratio:3/2}
+.gallery-swiper .swiper-slide img{width:100%;height:100%;object-fit:cover}
+.gallery-swiper .swiper-pagination-bullet{background:var(--gold);opacity:.4}
+.gallery-swiper .swiper-pagination-bullet-active{opacity:1}
+.gallery-swiper .swiper-button-next,.gallery-swiper .swiper-button-prev{color:var(--gold)}
+
+/* Tilt Cards */
+.tilt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;perspective:1000px}
+@media(max-width:968px){.tilt-grid{grid-template-columns:1fr}}
+.tilt-card{background:rgba(255,255,255,.05);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.09);border-radius:var(--radius);padding:40px 32px;transform-style:preserve-3d;transition:transform .3s ease;position:relative;overflow:hidden}
+.tilt-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent,rgba(212,175,55,.05));opacity:0;transition:opacity .3s}
+.tilt-card:hover::before{opacity:1}
+.tilt-card .stars{color:var(--gold);margin-bottom:16px;font-size:1.1rem}
+.tilt-card .quote{font-size:1.05rem;line-height:1.8;margin-bottom:20px}
+.tilt-card .author{display:flex;align-items:center;gap:14px}
+.tilt-card .author img{width:48px;height:48px;border-radius:50%;object-fit:cover}
+.tilt-card .author .name{font-weight:600;font-size:.95rem}
+.tilt-card .author .role{font-size:.8rem;color:var(--muted)}
+
+/* CTA */
+.cta-section{text-align:center}
+.cta-box{background:rgba(255,255,255,.05);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(212,175,55,.22);border-radius:24px;padding:60px 40px;max-width:700px;margin:0 auto}
+.cta-box h2{font-size:2.2rem;margin-bottom:16px}
+.cta-box p{color:var(--muted);margin-bottom:32px}
+.whatsapp-btn{background:#25D366;color:#fff;padding:18px 44px;border-radius:50px;font-weight:600;font-size:1.1rem;display:inline-flex;align-items:center;gap:12px;transition:all .3s}
+.whatsapp-btn:hover{transform:translateY(-3px);box-shadow:0 10px 40px rgba(37,211,102,.3)}
+
+/* Footer */
+footer{padding:60px 20px 40px;border-top:1px solid rgba(255,255,255,.05);text-align:center}
+footer .brand{font-family:'Sora',sans-serif;font-weight:800;font-size:1.3rem;margin-bottom:12px}
+footer .brand span{color:var(--gold)}
+footer .portfolio-link{display:inline-block;margin:16px 0;padding:10px 28px;border:1px solid rgba(255,255,255,.1);border-radius:50px;color:var(--muted);transition:all .3s}
+footer .portfolio-link:hover{border-color:var(--gold);color:var(--gold)}
+footer .copyright{font-size:.8rem;color:var(--muted);margin-top:20px}
+footer .built-by{font-size:.8rem;color:var(--muted);margin-top:8px}
+
+/* Pricing */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch}
+@media(max-width:968px){.pricing-grid{grid-template-columns:1fr}}
+.pricing-card{background:rgba(255,255,255,.05);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.09);border-radius:var(--radius);padding:44px 32px;text-align:center;position:relative;transition:all .4s ease}
+.pricing-card:hover{transform:translateY(-6px);border-color:rgba(212,175,55,.35)}
+.pricing-card.featured{border-color:rgba(212,175,55,.45);background:rgba(212,175,55,.06)}
+.pricing-card .price-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--onyx);font-size:.75rem;font-weight:700;padding:6px 16px;border-radius:50px;letter-spacing:1px}
+.pricing-card .price-name{font-size:1.1rem;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:16px}
+.pricing-card .price-amount{font-family:'Sora',sans-serif;font-size:3rem;font-weight:800;color:var(--gold);margin-bottom:24px}
+.pricing-card ul{list-style:none;text-align:left;margin-bottom:32px}
+.pricing-card ul li{padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05);color:var(--muted);font-size:.95rem}
+.pricing-card ul li:last-child{border-bottom:none}
+
+/* GSAP anim helpers */
+.reveal{opacity:0;transform:translateY(40px)}
+</style>
+</head>
+<body class="bg-grad">
+
+<!-- Cursor -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Nav -->
+<nav>
+<div class="logo">Zviropolis Veterinary</div>
+<ul>
+<li><a href="#about">About</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#gallery">Gallery</a></li>
+<li><a href="#testimonials">Reviews</a></li>
+<li><a href="#pricing">Pricing</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+<div>
+<span class="hero-badge">Veterinary &middot; Warsaw</span>
+<h1 class="hero-title">Zviropolis Veterinary<span class="gold">Premium Veterinary</span></h1>
+<p class="hero-sub">Your trusted destination for exceptional Veterinary services in Warsaw. Experience excellence in every detail.</p>
+<div class="hero-cta">
+<a href="#contact" class="btn btn-gold">Get in Touch</a>
+<a href="#gallery" class="btn btn-ghost">View Gallery</a>
+</div>
+</div>
+<div class="hero-scroll">Scroll to explore</div>
+</section>
+
+<!-- About -->
+<section id="about">
+<div class="container">
+<div class="about-grid">
+<div class="about-img reveal"><img src="https://loremflickr.com/800/600/veterinary?lock=87811" alt="Zviropolis Veterinary in Warsaw"></div>
+<div class="about-text reveal">
+<span class="tag gold" style="font-size:.85rem;text-transform:uppercase;letter-spacing:3px;display:block;margin-bottom:12px">About Us</span>
+<h3>Welcome to Zviropolis Veterinary</h3>
+<p>Located in the heart of Warsaw, Zviropolis Veterinary is dedicated to providing the highest quality Veterinary experience. Our team combines passion, expertise, and a commitment to excellence in everything we do.</p>
+<p>Whether you are a local resident or visiting Warsaw, we invite you to discover what makes us the preferred choice for Veterinary services in the area.</p>
+<div class="about-stats">
+<div><div class="stat-num">8</div><div class="stat-label">Years Experience</div></div>
+<div><div class="stat-num">103</div><div class="stat-label">Happy Clients</div></div>
+<div><div class="stat-num">153</div><div class="stat-label">5-Star Reviews</div></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Services -->
+<section id="services" style="background:var(--onyx2)">
+<div class="container">
+<div class="sec-header reveal">
+<span class="tag">What We Offer</span>
+<h2>Our Services</h2>
+<p>Comprehensive Veterinary solutions tailored to meet your needs</p>
+</div>
+<div class="services-grid">
+<div class="service-card reveal"><div class="service-icon">&#9733;</div><h3>Wellness Exams</h3><p>Comprehensive health checkups for pets.</p></div>
+<div class="service-card reveal"><div class="service-icon">&#10022;</div><h3>Surgery</h3><p>Safe surgical procedures with modern equipment.</p></div>
+<div class="service-card reveal"><div class="service-icon">&#10047;</div><h3>Emergency Care</h3><p>24/7 emergency veterinary services.</p></div>
+</div>
+</div>
+</section>
+
+<!-- Gallery -->
+<section id="gallery">
+<div class="container">
+<div class="sec-header reveal">
+<span class="tag">Our Work</span>
+<h2>Gallery</h2>
+<p>A glimpse into our world of Veterinary in Warsaw</p>
+</div>
+<div class="gallery-swiper swiper reveal">
+<div class="swiper-wrapper">
+<div class="swiper-slide"><img src="https://loremflickr.com/900/600/veterinary?lock=87811" alt="Gallery 1"></div>
+<div class="swiper-slide"><img src="https://loremflickr.com/900/600/vet-clinic?lock=88928" alt="Gallery 2"></div>
+<div class="swiper-slide"><img src="https://loremflickr.com/900/600/pet-care?lock=90045" alt="Gallery 3"></div>
+<div class="swiper-slide"><img src="https://loremflickr.com/900/600/animal?lock=91162" alt="Gallery 4"></div>
+<div class="swiper-slide"><img src="https://loremflickr.com/900/600/veterinary?lock=92279" alt="Gallery 5"></div>
+<div class="swiper-slide"><img src="https://loremflickr.com/900/600/vet-clinic?lock=93396" alt="Gallery 6"></div>
+</div>
+<div class="swiper-pagination"></div>
+<div class="swiper-button-next"></div>
+<div class="swiper-button-prev"></div>
+</div>
+</div>
+</section>
+
+<!-- Testimonials (3D Tilt Cards) -->
+<section id="testimonials" style="background:var(--onyx2)">
+<div class="container">
+<div class="sec-header reveal">
+<span class="tag">Client Stories</span>
+<h2>What Our Clients Say</h2>
+</div>
+<div class="tilt-grid">
+<div class="tilt-card reveal">
+<div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+<p class="quote">"Absolutely outstanding experience. The team at Zviropolis Veterinary exceeded all my expectations. Highly recommended!"</p>
+<div class="author">
+<img src="https://loremflickr.com/100/100/portrait,face?lock=91162" alt="Client">
+<div><div class="name">Anna Schmidt</div><div class="role">Warsaw</div></div>
+</div>
+</div>
+<div class="tilt-card reveal">
+<div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+<p class="quote">"Professional, friendly, and truly passionate about what they do. The best Veterinary experience I've had in Warsaw."</p>
+<div class="author">
+<img src="https://loremflickr.com/100/100/portrait,face?lock=92279" alt="Client">
+<div><div class="name">Marco Rossi</div><div class="role">Warsaw</div></div>
+</div>
+</div>
+<div class="tilt-card reveal">
+<div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+<p class="quote">"From the moment I walked in, I knew I was in good hands. Exceptional quality and attention to detail."</p>
+<div class="author">
+<img src="https://loremflickr.com/100/100/portrait,face?lock=93396" alt="Client">
+<div><div class="name">Sophie Dubois</div><div class="role">Warsaw</div></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Pricing -->
+<section id="pricing" style="background:var(--onyx2)">
+<div class="container">
+<div class="sec-header reveal">
+<span class="tag">Packages</span>
+<h2>Simple, Transparent Pricing</h2>
+<p>Choose the package that fits your business</p>
+</div>
+<div class="pricing-grid">
+<div class="pricing-card reveal">
+<div class="price-name">Essential</div>
+<div class="price-amount">$200</div>
+<ul>
+<li>Premium one-page website</li>
+<li>GSAP animations &amp; custom cursor</li>
+<li>Mobile-first responsive design</li>
+<li>WhatsApp contact integration</li>
+<li>1 revision round included</li>
+</ul>
+<a href="https://wa.me/9233390025902" target="_blank" class="btn btn-ghost">Choose Essential</a>
+</div>
+<div class="pricing-card featured reveal">
+<div class="price-badge">Most Popular</div>
+<div class="price-name">Professional</div>
+<div class="price-amount">$250</div>
+<ul>
+<li>Everything in Essential</li>
+<li>Interactive gallery slider</li>
+<li>3D tilt testimonial cards</li>
+<li>SEO setup &amp; fast loading</li>
+<li>3 revision rounds included</li>
+</ul>
+<a href="https://wa.me/9233390025902" target="_blank" class="btn btn-gold">Choose Professional</a>
+</div>
+<div class="pricing-card reveal">
+<div class="price-name">Premium</div>
+<div class="price-amount">$300</div>
+<ul>
+<li>Everything in Professional</li>
+<li>Custom domain connection</li>
+<li>Google Analytics setup</li>
+<li>1 month of free support</li>
+<li>Priority delivery</li>
+</ul>
+<a href="https://wa.me/9233390025902" target="_blank" class="btn btn-ghost">Choose Premium</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CTA / Contact -->
+<section id="contact" class="cta-section">
+<div class="container">
+<div class="cta-box reveal">
+<h2>Ready to Get Started?</h2>
+<p>Contact us today and discover the Zviropolis Veterinary difference. We are here to help you in Warsaw.</p>
+<a href="https://wa.me/9233390025902" class="whatsapp-btn" target="_blank">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-9.651 13.24l-.143-.001c-1.585 0-3.145-.425-4.498-1.228l-.322-.191-3.343.877.892-3.259-.21-.335a8.264 8.264 0 01-1.265-4.406c.001-4.566 3.717-8.281 8.285-8.281 2.212.001 4.291.864 5.856 2.428a8.232 8.232 0 012.426 5.855c-.001 4.566-3.716 8.281-8.284 8.281m7.062-15.382a9.954 9.954 0 00-7.062-2.918c-5.497 0-9.974 4.476-9.976 9.973 0 1.76.46 3.478 1.333 4.99l-1.417 5.173 5.181-1.358a9.945 9.945 0 004.772 1.215h.004c5.497 0 9.974-4.476 9.976-9.973a9.937 9.937 0 00-2.911-7.062"/></svg>
+Chat on WhatsApp
+</a>
+</div>
+</div>
+</section>
+
+<!-- Footer -->
+<footer>
+<div class="brand">Zviropolis Veterinary</div>
+<p class="muted" style="font-size:.9rem;max-width:400px;margin:0 auto 20px">Veterinary services in Warsaw</p>
+<a href="https://onyx-digital-sidd.vercel.app/" target="_blank" class="portfolio-link">View OnyxDigital Portfolio &rarr;</a>
+<p class="built-by">Designed &amp; built by <strong style="color:var(--gold)">OnyxDigital</strong></p>
+<p class="copyright">&copy; 2026 Zviropolis Veterinary. All rights reserved.</p>
+</footer>
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<!-- GSAP -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+<script>
+// Custom Cursor
+(function(){
+var dot=document.getElementById('cursorDot');
+var ring=document.getElementById('cursorRing');
+var mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;dot.style.transform='translate('+mx+'px,'+my+'px)'});
+function anim(){rx+=(mx-rx)*.15;ry+=(my-ry)*.15;ring.style.transform='translate('+(rx-20)+'px,'+(ry-20)+'px)';requestAnimationFrame(anim)}
+anim();
+document.querySelectorAll('a,button,.service-card,.tilt-card').forEach(function(el){
+el.addEventListener('mouseenter',function(){ring.classList.add('hover')});
+el.addEventListener('mouseleave',function(){ring.classList.remove('hover')});
+});
+})();
+
+// Swiper Gallery
+var gallerySwiper=new Swiper('.gallery-swiper',{slidesPerView:1,spaceBetween:20,loop:true,autoplay:{delay:3500,disableOnInteraction:false},pagination:{el:'.swiper-pagination',clickable:true},navigation:{nextEl:'.swiper-button-next',prevEl:'.swiper-button-prev'},breakpoints:{640:{slidesPerView:2},968:{slidesPerView:3}}});
+
+// GSAP Animations
+gsap.registerPlugin(ScrollTrigger);
+gsap.from('.hero-title',{y:60,opacity:0,duration:1,delay:.2,ease:'power3.out'});
+gsap.from('.hero-sub',{y:30,opacity:0,duration:.8,delay:.5,ease:'power2.out'});
+gsap.from('.hero-cta',{y:20,opacity:0,duration:.6,delay:.7,ease:'power2.out'});
+gsap.from('.hero-badge',{y:-20,opacity:0,duration:.5,delay:.1,ease:'power2.out'});
+
+gsap.utils.toArray('.reveal').forEach(function(el){
+ScrollTrigger.create({trigger:el,start:'top 85%',onEnter:function(){gsap.to(el,{y:0,opacity:1,duration:.8,ease:'power3.out'})},once:true});
+});
+
+// 3D Tilt Cards
+document.querySelectorAll('.tilt-card').forEach(function(card){
+card.addEventListener('mousemove',function(e){
+var rect=card.getBoundingClientRect();
+var x=e.clientX-rect.left;
+var y=e.clientY-rect.top;
+var cx=rect.width/2;
+var cy=rect.height/2;
+var rotY=((x-cx)/cx)*8;
+var rotX=((cy-y)/cy)*8;
+card.style.transform='perspective(1000px) rotateX('+rotX+'deg) rotateY('+rotY+'deg) translateZ(10px)';
+});
+card.addEventListener('mouseleave',function(){card.style.transform='perspective(1000px) rotateX(0) rotateY(0) translateZ(0)'});
+});
+</script>
+</body>
+</html>
